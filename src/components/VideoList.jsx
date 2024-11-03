@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import api from '../services/api';
+import { Link } from 'react-router-dom';
 
 const VideoList = () => {
   const [loading, setLoading] = useState(true);
@@ -8,15 +10,22 @@ const VideoList = () => {
   const [filteredVideos, setFilteredVideos] = useState([]);
 
   useEffect(() => {
-    setVideos([
-      { id: 1, title: 'Teste maluco', description: 'Description 1' },
-      { id: 2, title: 'Ovelhas mecanicas', description: 'Description 2' },
-    ]);
-    setLoading(false);
+    const fetchVideos = async () => {
+      try {
+        const response = await api.get('/videos');
+        setVideos(response.data);
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
   }, []);
 
   useEffect(() => {
-    setFilteredVideos(videos.filter((video) => video.title.toLowerCase().includes(search.toLowerCase())));
+    setFilteredVideos(videos.filter((video) => video.titulo.toLowerCase().includes(search.toLowerCase())));
   }, [search, videos]);
 
   if(loading) {
@@ -27,7 +36,7 @@ const VideoList = () => {
     );
   }
 
-  if(!videos.length) {
+  if(!filteredVideos.length) {
     return (
       <Container>
         <h1>Nenhum filme encontrado</h1>
@@ -44,7 +53,13 @@ const VideoList = () => {
 
       <ul>
         {filteredVideos.map((video) => (
-          <li key={video.id}>{video.title}</li>
+          <Link key={video.titulo} to={`/video/${video.titulo}`}>
+            <li>
+              <img src={video.thumbnail} alt={video.titulo} />
+              <h2>{video.titulo}</h2>
+              <p>{video.descricao}</p>
+            </li>
+          </Link>
         ))}
       </ul>
     </Container>
@@ -94,18 +109,28 @@ const Container = styled.nav`
     gap: 16px;
     padding: 0;
 
+    a {
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
     li {
+      cursor: pointer;
       background-color: var(--background-500);
       padding: 16px;
       border-radius: 8px;
-      margin-bottom: 16px;
-      width: 300px;
-      height: 400px;
+      width: 400px;
 
       transition: all 0.3s ease;
 
       &:hover {
         scale: 1.05;
+      }
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
       }
     }
   }
