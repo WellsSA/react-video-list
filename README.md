@@ -1,8 +1,36 @@
-# React + Vite
+# React Video Listing & Searching Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a sample React library for listing and searching videos. It is designed to be used in a class project to demonstrate the capabilities of React, styled-components, and React Router.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Video Listing**: Displays a list of videos fetched from an API.
+- **Search Functionality**: Allows users to search for videos by title.
+- **Responsive Design**: Uses styled-components for responsive and modern UI.
+- **Routing**: Utilizes React Router for navigation between different video details.
+
+## Installation
+
+To install the library, clone the repository and run the following command:
+
+```bash
+npm install
+```
+
+## Usage
+
+To start the mock server, run the following command:
+
+```bash
+npm run mock-server
+```
+
+To start the library, run the following command:
+
+```bash
+npm run dev
+```
+
+## License
+
+This project is licensed under the MIT License.
