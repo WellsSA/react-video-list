@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PublicLayout = ({ children }) => {
   return (
     <Main>
       <header>
-        <h1>Listagem de Filmes | Thiago Bussola</h1>
+        <Link to="/">
+          <h1>Listagem de Filmes</h1>
+        </Link>
       </header>
       <section>
         {children}

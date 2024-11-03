@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import api from '../services/api';
 import { Link } from 'react-router-dom';
+import { store } from '../services/localStorage';
 
 const VideoList = () => {
   const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ const VideoList = () => {
 
       <ul>
         {filteredVideos.map((video) => (
-          <Link key={video.titulo} to={`/video/${video.titulo}`}>
+          <Link key={video.id} to={`/video/${video.titulo}`} onClick={() => store.set('video', video)}>
             <li>
               <img src={video.thumbnail} alt={video.titulo} />
               <h2>{video.titulo}</h2>
