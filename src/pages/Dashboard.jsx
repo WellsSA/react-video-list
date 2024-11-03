@@ -1,7 +1,9 @@
+import VideoList from "../components/VideoList";
+
 const Dashboard = () => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <VideoList />
     </div>
   );
 }
