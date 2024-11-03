@@ -121,6 +121,7 @@ const Container = styled.nav`
       padding: 16px;
       border-radius: 8px;
       width: 400px;
+      height: 100%;
 
       transition: all 0.3s ease;
 
